@@ -1,0 +1,76 @@
+<!--
+   <p>渲染元素</p>
+
+   state 是组件中的特殊属性，通过setState函数来改变其对象值
+   componentDidMount  在创建组件时被调用
+   componentWillUnmount 组件卸载时被调用
+
+   这里关系着组件的生命周期，创建，卸载
+
+   @autho toway
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@15/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class Clock extends React.Component {
+          //1
+          constructor(props) {
+             super(props);
+             this.state = {date:new Date()};
+          }
+
+          tick() {
+             this.setState({
+               date: new Date()
+             })
+          }
+
+          //3
+          componentDidMount() {
+            this.timerID = setInterval(()=> this.tick(), 1000);
+          }
+
+          //end
+          componentWillUnmount() {
+             clearInterval(this.timerID);
+          }
+          //2
+          render() {
+           return (
+             <div>
+                <h1>Hello, World!</h1>
+                <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+             </div>
+           );
+         }
+        }
+
+         //更新内容
+
+
+            ReactDOM.render(
+              <Clock />,
+              document.getElementById("root")
+            );
+
+
+    </script>
+
+
+
+</body>
+</html>
