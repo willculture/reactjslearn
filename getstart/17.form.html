@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/6.21.1/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+       /**
+       *  表单的使用和DOM的表单类似，只是一点点的不同
+       *  在reactjs中 主要是 input, textarea, select,以及他们的相关状态state, 改变同样使用setState()函数
+       *  下面使用input实例
+       */
+
+       class NameForm extends React.Component {
+           constructor(props) {
+              super(props);
+              this.state = {value: ''};
+              this.handleChange = this.handleChange.bind(this);
+              this.handleSubmit = this.handleSubmit.bind(this);
+
+           }
+
+           handleChange(event) {
+              this.setState({value: event.target.value});
+           }
+           handleSubmit(event) {
+              alert("A name was submitted: " + this.state.value);
+              event.preventDefault();
+           }
+
+           render() {
+              return (
+                 <form onSubmit={this.handleSubmit}>
+                     <label>Name: <input type="text" value={this.state.value} onChange={this.handleChange}/></label>
+                     <input type="submit" value="Submit"/>
+                 </form>
+              )
+           }
+       }
+
+
+       ReactDOM.render(<NameForm/>, document.getElementById("root"));
+  </script>
+
+</body>
+</html>

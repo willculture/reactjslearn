@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/6.21.1/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+       /**
+       * 在reactjs中，主要是通过map函数来进行处理
+       */
+       function NumberList(props) {
+         const numbers = props.numbers;
+         const listItems = numbers.map(number =>
+            <li>{number}</li>
+         );
+
+         return (
+           <ul>{listItems}</ul>
+         );
+
+       }
+
+       const numbers = [1, 2, 3, 4, 5];
+
+       ReactDOM.render(<NumberList numbers={numbers} />, document.getElementById("root"));
+  </script>
+
+</body>
+</html>
