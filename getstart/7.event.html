@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/6.21.1/babel.min.js"></script>
+</head>
+<body>
+   <div id="root"></div>
+   <script type="text/babel">
+         class Toggle extends React.Component {
+              constructor(props) {
+                 super(props);
+                 this.state = {isToggleOn: true};
+              }
+
+              //第一种方式处理
+              /*handClick() {
+                 console.log(this); //这种模式的this为空，按照严格模式处理, 如果事件中处理必须在调用之时，绑定this比如，onClick= {this.handChick.bind(this)}
+                 this.setState(prevState => ({
+                    isToggleOn: !prevState.isToggleOn
+                 }));
+              } */
+
+
+              //第二种方式， 使用缩减方式来声明函数，这样this会绑定到当前函数中, onClick={this.handClick}
+              handClick = ()=> {
+                 console.log(this);
+                 this.setState(prevState => ({
+                    isToggleOn: !prevState.isToggleOn
+                 }));
+              };
+              //第三种, 在onClick上填入匿名函数 (e) => this.handClick(e)
+              /*
+              handClick() {
+                console.log(this);
+                this.setState(prevState => ({
+                   isToggleOn: !prevState.isToggleOn
+                }));
+              }*/
+
+
+              render() {
+                  return (
+                    <button onClick={this.handClick}>
+                        {this.state.isToggleOn ? "ON" : "OFF"}
+                    </button>
+                  );
+              }
+         }
+
+         ReactDOM.render(
+           <Toggle />,
+           document.getElementById("root")
+         );
+   </script>
+</body>
+</html>

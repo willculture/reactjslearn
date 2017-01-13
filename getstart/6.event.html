@@ -1,0 +1,44 @@
+<!--
+
+   1. jsx的event与dom的event相似
+   2. jsx的事件属性为驼峰法命名
+   3. jsx的事件是函数作为一个值
+   4. 默认事件取消，必须调用preventDefault()函数， return false是不可行的
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@15/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+</head>
+<body>
+
+   <div id="root"></div>
+
+   <script type="text/babel">
+
+
+        function ActionLink() {
+
+          const a = <a href="#" onClick={tap}>点击我</a>;
+          function tap(e) {
+             e.preventDefault();
+              console.log("hello", e);
+          }
+
+          ReactDOM.render(
+           a,
+           document.getElementById("root")
+          );
+       }
+
+   </script>
+</body>
+</html>
